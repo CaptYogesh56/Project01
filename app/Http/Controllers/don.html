@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual Gauge</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        .gauge-container {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.gauge {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #f0f0f0;
+}
+
+.gauge-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
+.gauge-dial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateZ(calc(180deg * var(--dial-value) / 100)); /* Update value based on data-value attribute */
+  transition: transform 1s ease-in-out;
+}
+
+.gauge-needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 5% !important; /* Ensures needle has a fixed height */
+  background-color: #2196f3;
+  transform-origin: bottom;
+  transform: rotateZ(45deg); /* Adjust needle angle as needed */
+}
+
+.gauge-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%; /* Adjust track width as desired */
+  height: 50%; /* Adjust track height as desired */
+  border-radius: 50%;
+  border: 10px solid #ddd;
+}
+
+.gauge-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+}
+
+    </style>
+</head>
+<body>
+    <div class="gauge-container">
+        <div class="gauge" id="pressure-gauge">
+            <div class="gauge-label">Outlet Pressure</div>
+            <div class="gauge-dial" data-value="15">
+                <div class="gauge-needle"></div>
+                <div class="gauge-track"></div>
+                <div class="gauge-value">15</div>
+            </div>
+        </div>
+        <div class="gauge" id="flow-gauge">
+            <div class="gauge-label">Flow Rate</div>
+            <div class="gauge-dial" data-value="500">
+                <div class="gauge-needle"></div>
+                <div class="gauge-track"></div>
+                <div class="gauge-value">500</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const gauges = document.querySelectorAll('.gauge-dial');
+
+function updateGauges() {
+  gauges.forEach(gauge => {
+    // Simulate getting a new value (replace with your actual data source)
+    const newValue = Math.floor(Math.random() * 100); // Random value between 0 and 99
+
+    gauge.dataset.value = newValue;
+    gauge.style.setProperty('--dial-value', newValue);
+
+    // Add/remove updating class for animation (optional)
+    gauge.classList.add('updating');
+    setTimeout(() => gauge.classList.remove('updating'), 1000); // Remove after 1 second
+  });
+}
+
+setInterval(updateGauges, 2000); // Update gauges every 2 seconds
+
+updateGauges(); // Call initially to set starting values
+
+    </script>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>

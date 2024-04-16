@@ -21,3 +21,7 @@ Route::post('/forget-password',[ForgotPasswordController::class, 'forgotpass'])-
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'resetpasslink'])->name('reset-password');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'resetpass'])->name('resetpassword');
+
+Route::get('/side', function () {
+    return view('pages.add_climate_control');
+});

@@ -47,41 +47,52 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="row">
+            @if(Session::has('Success'))
+            <div class="alert alert-success">{{Session::get('Success')}}</div>
+            @endif
+            @if(Session::has('fail'))
+            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
         <div class="col-lg-7">
-<form action="">
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label float-end">S. No.</label>
-        <input type="number"class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Crop Name</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Crop Stage</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Ca</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">K</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Mg</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">N</label>
-        <input type="text" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">P</label>
-        <input type="text" class="form-control">
-    </div>
-</form>
+            <form action="{{ route('crops.store') }}" method="POST">
+                @csrf
+                <div class="m-3 d-flex">
+                    <label for="s_no" class="col-lg-2 form-label float-end">S. No.</label>
+                    <input type="number" name="s_no" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="crop_name" class="col-lg-2 form-label">Crop Name</label>
+                    <input type="text" name="crop_name" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="crop_stage" class="col-lg-2 form-label">Crop Stage</label>
+                    <input type="text" name="crop_stage" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="ca" class="col-lg-2 form-label">Ca</label>
+                    <input type="text" name="ca" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="k" class="col-lg-2 form-label">K</label>
+                    <input type="text" name="k" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="mg" class="col-lg-2 form-label">Mg</label>
+                    <input type="text" name="mg" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="n" class="col-lg-2 form-label">N</label>
+                    <input type="text" name="n" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="p" class="col-lg-2 form-label">P</label>
+                    <input type="text" name="p" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <button type="submit" class="btn_orange ms-2">Save</button>
+                </div>
+            </form>
+            
 
 </div>
 </div>

@@ -43,29 +43,36 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>S. No.</th>
-                <th>Line ID</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Line ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($motors as $motor)
+                        <tr>
+                            <td>{{ $motor->s_no }}</td>
+                            <td>{{ $motor->line_id }}</td>
+                            <td>{{ $motor->name }}</td>
+                            <td>{{ $motor->type }}</td>
+                            <td><a href="{{-- route('motors.edit', $motor->id) --}}"><i class="fas fa-edit"></i></a></td>
+                            <td>
+                                <form action="{{-- route('motors.destroy', $motor->id) --}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="border: none; background: none;"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-motors')}}" class="text-white">Add</a></button>

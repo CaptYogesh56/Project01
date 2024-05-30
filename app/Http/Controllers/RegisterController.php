@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -13,7 +14,7 @@ class RegisterController extends Controller
         return view('register');        
     }
 
-    public function register(Request $request) {
+    public function register(Request $request) { //Function to register user
         
         $request->validate(
             ['name' => 'required',
@@ -45,7 +46,7 @@ class RegisterController extends Controller
         return view('login');        
     }
 
-    public function login(Request $request) {
+    public function login(Request $request) { //Function to login user
         
         $request->validate(
             ['email' => 'required|email',
@@ -62,7 +63,8 @@ class RegisterController extends Controller
             if(Hash::check($request->password, $user->password))
             {
                 $request->session()->put('userid', $user->id);
-                return redirect('dashboard');
+                $request->session()->put('username', $user->name);
+                return redirect('irrigation');
             }
             else
             {
@@ -75,5 +77,11 @@ class RegisterController extends Controller
         }
       
         
+    }
+
+    public function logout(Request $request) //Function to logout user
+    {
+        Auth::logout();
+        return redirect('login');
     }
 }

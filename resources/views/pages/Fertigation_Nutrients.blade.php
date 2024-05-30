@@ -51,37 +51,44 @@
 
         <section class="table_content mt-5">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>S. No.</th>
-                <th>Name</th>
-                <th>Ca</th>
-                <th>k</th>
-                <th>Mg</th>
-                <th>N</th>
-                <th>P</th>
-                <th>Cost/kg</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Name</th>
+                        <th>Ca</th>
+                        <th>K</th>
+                        <th>Mg</th>
+                        <th>N</th>
+                        <th>P</th>
+                        <th>Cost/Kg</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($nutrients as $nutrient)
+                    <tr>
+                        <td>{{ $nutrient->s_no }}</td>
+                        <td>{{ $nutrient->name }}</td>
+                        <td>{{ $nutrient->ca }}</td>
+                        <td>{{ $nutrient->k }}</td>
+                        <td>{{ $nutrient->mg }}</td>
+                        <td>{{ $nutrient->n }}</td>
+                        <td>{{ $nutrient->p }}</td>
+                        <td>{{ $nutrient->cost_per_kg }}</td>
+                        <td><a href="{{-- route('edit.fertigation_nutrient', $nutrient->id) --}}"><i class="fas fa-edit"></i></a></td>
+                        <td>
+                            <form action="{{-- route('delete.fertigation_nutrient', $nutrient->id) --}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-fertigation-nutrients')}}" class="text-white">Add</a></button>

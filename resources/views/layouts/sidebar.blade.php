@@ -28,10 +28,10 @@
 				            <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <img src="assets/images/profile.png" alt="user profile"></a>
 				            <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-								<li><a class="dropdown-item" href="myprofile.php">Account</a></li>
+								{{-- <li><a class="dropdown-item" href="myprofile.php">Account</a></li>
 								<li><a class="dropdown-item" href="changepassword.php">Manage Passwords</a></li>
-								<li><hr class="dropdown-divider"></li>
-								<li><a class="dropdown-item" href="../../logout.php">Log Out</a></li>
+								<li><hr class="dropdown-divider"></li> --}}
+								<li><a class="dropdown-item" href="{{ route('logout') }}">Log Out</a></li>
 							</ul>
 			            </div><!--//app-user-dropdown--> 
 		            </div><!--//app-utilities-->
@@ -44,13 +44,13 @@
 	        <div class="sidepanel-inner d-flex flex-column">
 		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
 		        <div class="app-branding">
-		            <a class="app-logo" href="index.php"><span class="logo-text">KUCH BHI</span></a>
+		            <a class="app-logo text-center" href="index.php"><span class="logo-text text-center">SAIF</span></a>
 	
 		        </div><!--//app-branding-->  
 		        
 			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				    <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-					    <li class="nav-item">
+					    {{-- <li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 					        <a class="nav-link " id="index" href="index.php">
 						        <span class="nav-icon">
@@ -61,10 +61,10 @@
 						         </span>
 		                         <span class="nav-link-text">Dashboard</span>
 					        </a><!--//nav-link-->
-					    </li><!--//nav-item-->
+					    </li><!--//nav-item--> --}}
 					    <li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-					        <a class="nav-link " id="livestatus" href="teachingreport.php">
+					        <a class="nav-link " id="livestatus" href="{{ route('live.status') }}">
 						        <span class="nav-icon">
 						        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
@@ -381,7 +381,7 @@
 					    </li><!--//nav-item-->
 						<li class="nav-item">
 					        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-					        <a class="nav-link" href="{{route('manual-mode')}}">
+					        <a class="nav-link " id="manualmode" href="{{route('manual-mode')}}">
 						        <span class="nav-icon">
 						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar2-week" viewBox="0 0 16 16">
   <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H2z"/>
@@ -421,7 +421,7 @@
 			    <div class="app-sidepanel-footer">
 				    <nav class="app-nav app-nav-footer">
 					    <ul class="app-menu footer-menu list-unstyled">
-						    <li class="nav-item">
+						    {{-- <li class="nav-item">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 						        <a class="nav-link" id="profile" href="#">
 							        <span class="nav-icon">
@@ -431,8 +431,8 @@
 							        </span>
 			                        <span class="nav-link-text">Profile</span>
 						        </a><!--//nav-link-->
-						    </li><!--//nav-item-->
-						    <li class="nav-item">
+						    </li><!--//nav-item--> --}}
+						    {{-- <li class="nav-item">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
 						        <a class="nav-link" id="pass" href="#">
 							        <span class="nav-icon">
@@ -442,10 +442,10 @@
 							        </span>
 			                        <span class="nav-link-text">Manage Passwords</span>
 						        </a><!--//nav-link-->
-						    </li><!--//nav-item-->
+						    </li><!--//nav-item--> --}}
 						    <li class="nav-item">
 						        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-						        <a class="nav-link" href="#">
+						        <a class="nav-link" href="{{ route('logout') }}">
 							        <span class="nav-icon">
 							            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>

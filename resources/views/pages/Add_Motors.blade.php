@@ -47,25 +47,35 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="row">
+            @if(Session::has('Success'))
+        <div class="alert alert-success">{{Session::get('Success')}}</div>
+        @endif
+        @if(Session::has('fail'))
+        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+        @endif
         <div class="col-lg-7">
-<form action="">
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label float-end">S. No.</label>
-        <input type="number" placeholder="2" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Line Id</label>
-        <input type="text" placeholder="Enter Name" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Name</label>
-        <input type="text" placeholder="1" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Type</label>
-        <input type="text"  class="form-control">
-    </div>
-</form>
+            <form action="{{ route('add.motors') }}" method="POST" class="row">
+                @csrf
+                <div class="m-3 d-flex">
+                    <label for="s_no" class="col-lg-2 form-label float-end">S. No.</label>
+                    <input type="number" name="s_no" placeholder="2" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="line_id" class="col-lg-2 form-label">Line Id</label>
+                    <input type="text" name="line_id" placeholder="Enter Name" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="name" class="col-lg-2 form-label">Name</label>
+                    <input type="text" name="name" placeholder="1" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="type" class="col-lg-2 form-label">Type</label>
+                    <input type="text" name="type" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <button type="submit" class="btn_orange ms-2">Save</button>
+                </div>
+            </form>
 
 </div>
 </div>

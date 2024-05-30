@@ -42,47 +42,48 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>No.</th>
-                <th>Program Seq.</th>
-                <th>Program Name</th>
-                <th>Values</th>
-                <th>Motor</th>
-                <th>Fertigation On/Off</th>
-                <th>Fertigation On</th>
-                <th>Fertigation Type</th>
-                <th>PH On/Off</th>
-                <th>Total Area</th>
-                <th>irrigation Type</th>
-                <th>Required Water</th>
-                <th>Total Water/Time</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>V1</td>
-                <td>1</td>
-                <td>1</td>
-                <td><input type="checkbox"></td>
-                <td>1</td>
-                <td>Quantity</td>
-                <td><input type="checkbox"></td>
-                <td>4000</td>
-                <td>Time (01) Voltmeter</td>
-                <td>0</td>
-                <td>0:4</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th> {{ session('userid') }} Program No.</th>
+                        <th>Program Name</th>
+                        <th>Select Valves</th>
+                        <th>Select Motors</th>
+                        <th>Irrigation Type</th>
+                        <th>Total Area (sqm)</th>
+                        <th>Required Water (lit/sqm)</th>
+                        <th>Total Water (Ltr)</th>
+                        <th>Fertigation Receipt No.</th>
+                        <th>Fertigation Type</th>
+                        <th>Injector Control</th>
+                        <th>Fertigation EC</th>
+                        <th>Pre Water</th>
+                        <th>Post Water</th>
+                        <th>Fertigation Water</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($irrigations as $irrigation)
+                    <tr>
+                        <td>{{ $irrigation->program_no }}</td>
+                        <td>{{ $irrigation->program_name }}</td>
+                        <td>{{ $irrigation->select_valves }}</td>
+                        <td>{{ $irrigation->select_motors }}</td>
+                        <td>{{ $irrigation->irrigation_type }}</td>
+                        <td>{{ $irrigation->total_area }}</td>
+                        <td>{{ $irrigation->required_water }}</td>
+                        <td>{{ $irrigation->total_water }}</td>
+                        <td>{{ $irrigation->fertigation_receipt_no }}</td>
+                        <td>{{ $irrigation->fertigation_type ? 'Yes' : 'No' }}</td>
+                        <td>{{ $irrigation->injector_control ? 'Yes' : 'No' }}</td>
+                        <td>{{ $irrigation->fertigation_ec }}</td>
+                        <td>{{ $irrigation->pre_water_1 }}<br>{{ $irrigation->pre_water_2 }}</td>
+                        <td>{{ $irrigation->post_water_1 }}<br>{{ $irrigation->post_water_2 }}</td>
+                        <td>{{ $irrigation->fertigation_water_1 }}<br>{{ $irrigation->fertigation_water_2 }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-irrigation')}}" class="text-white">Add</a></button>

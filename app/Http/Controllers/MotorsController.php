@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Motor;
+
 class MotorsController extends Controller
 {
     public function motors_index()
     {
-        return view('pages.motors');
+        $motors = Motor::all();
+        return view('pages.motors', compact('motors'));
     }
 
     public function add_motors()
@@ -19,6 +22,23 @@ class MotorsController extends Controller
 
     public function insert_motors(Request $request)
     {
-        // code
+        $request->validate([
+            's_no' => 'required|integer',
+            'line_id' => 'required|string',
+            'name' => 'required|string',
+            'type' => 'required|string',
+        ]);
+
+        $motor = new Motor();
+        $motor->s_no = $request->s_no;
+        $motor->line_id = $request->line_id;
+        $motor->name = $request->name;
+        $motor->type = $request->type;
+
+        if ($motor->save()) {
+            return redirect()->back()->with('Success', 'Motor details saved successfully!');
+        } else {
+            return redirect()->back()->with('fail', 'Something went wrong!');
+        }
     }
 }

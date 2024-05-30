@@ -43,29 +43,36 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>S. No.</th>
-                <th>Tank Name</th>
-                <th>Tank Type</th>
-                <th>Flowsensor Id</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>Tank A</td>
-                <td>Fertigation</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Tank Name</th>
+                        <th>Tank Type</th>
+                        <th>Flow Sensor ID</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($injectors as $injector)
+                        <tr>
+                            <td>{{ $injector->s_no }}</td>
+                            <td>{{ $injector->tank_name }}</td>
+                            <td>{{ $injector->tank_type }}</td>
+                            <td>{{ $injector->flow_sensor_id }}</td>
+                            <td><a href="{{-- route('injectors.edit', $injector->id) --}}"><i class="fas fa-edit"></i></a></td>
+                            <td>
+                                <form action="{{-- route('injectors.destroy', $injector->id) --}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="border: none; background: none;"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-injectors')}}" class="text-white">Add</a></button>

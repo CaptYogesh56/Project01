@@ -70,6 +70,7 @@
           </div>
         </form>
         <p class="text-center mt-3">Forgot Password? <a href="{{route('forget-password')}}">Click Here</a></p>
+        <p class="text-center mt-3">Don't have a account? <a href="{{route('register')}}">Register Here</a></p>
       </div>
     </div>
   </div>

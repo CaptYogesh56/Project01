@@ -43,39 +43,44 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>No.</th>
-                <th>Crop Name</th>
-                <th>Crop Stage</th>
-                <th>Crop Stage Days</th>
-                <th>Ca</th>
-                <th>K</th>
-                <th>Mg</th>
-                <th>N</th>
-                <th>P</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Tank A</td>
-                <td>7</td>
-                <td> </td>
-                <td> </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table-bordered text-center"> 
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Crop Name</th>
+                        <th>Crop Stage</th>
+                        <th>Ca</th>
+                        <th>K</th>
+                        <th>Mg</th>
+                        <th>N</th>
+                        <th>P</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($crops as $crop)
+                    <tr>
+                        <td>{{ $crop->s_no }}</td>
+                        <td>{{ $crop->crop_name }}</td>
+                        <td>{{ $crop->crop_stage }}</td>
+                        <td>{{ $crop->ca }}</td>
+                        <td>{{ $crop->k }}</td>
+                        <td>{{ $crop->mg }}</td>
+                        <td>{{ $crop->n }}</td>
+                        <td>{{ $crop->p }}</td>
+                        <td><a href="{{-- route('crops.edit', $crop->id) --}}"><i class="fas fa-edit"></i></a></td>
+                        <td>
+                            <form action="{{-- route('crops.destroy', $crop->id) --}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-crops')}}" class="text-white">Add</a></button>

@@ -11,6 +11,7 @@ use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\InjectorsController;
 use App\Http\Controllers\IrrigationController;
+use App\Http\Controllers\LiveStatusController;
 use App\Http\Controllers\ManualModeController;
 use App\Http\Controllers\MotorsController;
 use App\Http\Controllers\NutrientsController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TanksController;
 use App\Http\Controllers\ValvesController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +35,9 @@ Route::post('/register',[RegisterController::class, 'register'])->name('register
 Route::get('/login',[RegisterController::class, 'loginindex']);
 Route::post('/login',[RegisterController::class, 'login'])->name('login');
 
+//Routes for Live Status Board
+
+Route::get('/live-status',[LiveStatusController::class, 'index'])->name('live.status');
 
 //Routes for Forget password
 Route::get('/forget-password',[ForgotPasswordController::class, 'index']);
@@ -53,14 +58,14 @@ Route::post('/add-climate-control',[ClimateController::class, 'insert_climate_co
 //Routes for Irrigation
 Route::get('/irrigation',[IrrigationController::class, 'irrigation_index'])->name('irrigation');
 Route::get('/add-irrigation',[IrrigationController::class, 'add_irrigation'])->name('add-irrigation');
-Route::post('/add-irrigation',[ClimateController::class, 'insert_irrigation']);
+Route::post('/add-irrigation',[IrrigationController::class, 'insert_irrigation'])->name('irrigation.store');
 
 
 //Routes for Fertigation
 Route::get('/fertigation',[FertigationController::class, 'fertigation_index'])->name('fertigation');
 Route::get('/add-fertigation1',[FertigationController::class, 'add_fertigation1'])->name('add-fertigation1');
 Route::get('/add-fertigation2',[FertigationController::class, 'add_fertigation2'])->name('add-fertigation2');
-Route::post('/add-fertigation',[FertigationController::class, 'insert_fertigation']);
+Route::post('/add-fertigation',[FertigationController::class, 'insert_fertigation'])->name('add.fertigation');
 
 
 //Routes for Automation Mode
@@ -92,7 +97,7 @@ Route::post('/report',[ReportController::class, 'insert_report']);
 //Routes for Motors
 Route::get('/motors',[MotorsController::class, 'motors_index'])->name('motors');
 Route::get('/add-motors',[MotorsController::class, 'add_motors'])->name('add-motors');
-Route::post('/add-motors',[MotorsController::class, 'insert_motors']);
+Route::post('/add-motors',[MotorsController::class, 'insert_motors'])->name('add.motors');
 
 
 //Routes for Alarm
@@ -103,37 +108,37 @@ Route::post('/alarm',[AlarmController::class, 'insert_alarm']);
 //Routes for Filters
 Route::get('/filters',[FiltersController::class, 'filter_index'])->name('filters');
 Route::get('/add-filters',[FiltersController::class, 'add_filter'])->name('add-filters');
-Route::post('/add-filters',[FiltersController::class, 'insert_filter']);
+Route::post('/add-filters',[FiltersController::class, 'insert_filter'])->name('filters.add');
 
 
 //Routes for Valves
 Route::get('/valves',[ValvesController::class, 'valves_index'])->name('valves');
 Route::get('/add-valves',[ValvesController::class, 'add_valves'])->name('add-valves');
-Route::post('/add-valves',[ValvesController::class, 'insert_valves']);
+Route::post('/add-valves',[ValvesController::class, 'insert_valves'])->name('valves.store');
 
 
 //Routes for Fertigation Nutrients
 Route::get('/fertigation-nutrients',[NutrientsController::class, 'nutrients_index'])->name('fertigation-nutrients');
 Route::get('/add-fertigation-nutrients',[NutrientsController::class, 'add_nutrients'])->name('add-fertigation-nutrients');
-Route::post('/add-fertigation-nutrients',[NutrientsController::class, 'insert_nutrients']);
+Route::post('/add-fertigation-nutrients',[NutrientsController::class, 'insert_nutrients'])->name('add.nutrients');
 
 
 //Routes for Tanks
 Route::get('/tanks',[TanksController::class, 'tanks_index'])->name('tanks');
 Route::get('/add-tanks',[TanksController::class, 'add_tanks'])->name('add-tanks');
-Route::post('/add-tanks',[TanksController::class, 'insert_tanks']);
+Route::post('/add-tanks',[TanksController::class, 'insert_tanks'])->name('add.tanks');
 
 
 //Routes for Injectors
 Route::get('/injectors',[InjectorsController::class, 'injectors_index'])->name('injectors');
 Route::get('/add-injectors',[InjectorsController::class, 'add_injectors'])->name('add-injectors');
-Route::post('/add-injectors',[InjectorsController::class, 'insert_injectors']);
+Route::post('/add-injectors',[InjectorsController::class, 'insert_injectors'])->name('injectors.add');
 
 
 //Routes for Crops
 Route::get('/crops',[CropsController::class, 'crops_index'])->name('crops');
 Route::get('/add-crops',[CropsController::class, 'add_crops'])->name('add-crops');
-Route::post('/add-crops',[CropsController::class, 'insert_crops']);
+Route::post('/add-crops',[CropsController::class, 'insert_crops'])->name('crops.store');
 
 
 //Routes for General Settings
@@ -144,3 +149,5 @@ Route::post('/general-settings',[GeneralController::class, 'insert_general']);
 Route::get('/side', function () {
     return view('pages.add_climate_control');
 });
+
+Route::get('/logout',[RegisterController::class, 'logout'])->name('logout');

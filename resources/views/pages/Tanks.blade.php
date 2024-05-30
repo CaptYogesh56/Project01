@@ -43,35 +43,40 @@
         <div class="col-lg-10 mt-lg-5 mt-3">
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
-    <table class="table-bordered text-center"> 
-        <tbody>
-            <colgroup>
-                <col span=2></col>
-            </colgroup>
-            <tr>
-                <th>S. No.</th>
-                <th>Line ID</th>
-                <th>Tank Name</th>
-                <th>Tank Type</th>
-                <th>Quantity (in liters)</th>
-                <th>Sensor level</th>
-                <th>Injector level</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>Tank A</td>
-                <td>Fertigation</td>
-                <td>1000</td>
-                <td>0</td>
-                <td>1</td>
-                <td><i class="fas fa-edit"></i></td>
-                <td><i class="fa-solid fa-trash"></i></td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Line ID</th>
+                        <th>Tank Name</th>
+                        <th>Tank Type</th>
+                        <th>Quantity (in Liters)</th>
+                        <th>Injector ID</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tanks as $tank)
+                        <tr>
+                            <td>{{ $tank->s_no }}</td>
+                            <td>{{ $tank->line_id }}</td>
+                            <td>{{ $tank->tank_name }}</td>
+                            <td>{{ $tank->tank_type }}</td>
+                            <td>{{ $tank->quantity }}</td>
+                            <td>{{ $tank->injector_id }}</td>
+                            <td><a href="{{-- route('tanks.edit', $tank->id) --}}"><i class="fas fa-edit"></i></a></td>
+                            <td>
+                                <form action="{{-- route('tanks.destroy', $tank->id) --}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" style="border: none; background: none;"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 </div>
 <div class="d-flex flex-row justify-content-center align-items-center mt-5 align-center">
 <button class="btn_orange ms-2"><a href="{{route('add-tanks')}}" class="text-white">Add</a></button>

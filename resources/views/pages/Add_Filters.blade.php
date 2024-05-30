@@ -48,33 +48,44 @@
         <section class="table_content">
         
         <div class="row">
+            @if(Session::has('Success'))
+            <div class="alert alert-success">{{Session::get('Success')}}</div>
+            @endif
+            @if(Session::has('fail'))
+            <div class="alert alert-danger">{{Session::get('fail')}}</div>
+            @endif
         <div class="col-lg-7">
-<form action="">
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label float-end">S. No.</label>
-        <input type="number" placeholder="2" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Line Id</label>
-        <input type="text" placeholder="Enter Name" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Name</label>
-        <input type="text" placeholder="1" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Strat Time</label>
-        <input type="time" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">End Time</label>
-        <input type="time" class="form-control">
-    </div>
-    <div class="m-3 d-flex">
-        <label for="" class="col-lg-2 form-label">Interval</label>
-        <input type="text" placeholder="0" class="form-control">
-    </div>
-</form>
+            <form action="{{ route('filters.add') }}" method="POST">
+                @csrf
+                <div class="m-3 d-flex">
+                    <label for="s_no" class="col-lg-2 form-label float-end">S. No.</label>
+                    <input type="number" name="s_no" placeholder="2" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="line_id" class="col-lg-2 form-label">Line Id</label>
+                    <input type="text" name="line_id" placeholder="Enter Name" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="name" class="col-lg-2 form-label">Name</label>
+                    <input type="text" name="name" placeholder="1" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="start_time" class="col-lg-2 form-label">Start Time</label>
+                    <input type="time" name="start_time" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="end_time" class="col-lg-2 form-label">End Time</label>
+                    <input type="time" name="end_time" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <label for="interval" class="col-lg-2 form-label">Interval</label>
+                    <input type="text" name="interval" placeholder="0" class="form-control">
+                </div>
+                <div class="m-3 d-flex">
+                    <button type="submit" class="btn_orange ms-2">Save</button>
+                </div>
+            </form>
+            
 
 </div>
 </div>        

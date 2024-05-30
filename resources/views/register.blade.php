@@ -78,6 +78,7 @@
             <button type="submit" class="btn btn-orange btn-lg text-white">Register</button>
           </div>
         </form>
+        <p class="text-center mt-3">Already have an account? <a href="{{route('login')}}">Login Now</a></p>
       </div>
     </div>
   </div>

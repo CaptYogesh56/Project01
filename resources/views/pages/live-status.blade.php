@@ -44,6 +44,8 @@
             <h1 class="text-center">Live Status Board In Development!</h1>
             <br>
             <h4 class="text-center">Will be live soon!</h4>
+            <br><br>
+            {{-- <h4 class="text-center"> {!! $b !!} </h4> --}}
         <section class="table_content">
         <div class="table-responsive d-flex justify-content-center">
             
